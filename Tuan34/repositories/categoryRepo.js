@@ -21,7 +21,13 @@ class CategoryRepository {
             TableName: TABLE_NAME,
             Item: newCategory
         };
-        await docClient.send(new PutCommand(params));
+        try {
+            await docClient.send(new PutCommand(params));
+            console.log("Thêm DynamoDB thành công!", newCategory);
+        } catch (err) {
+            console.error("LỖI DYNAMODB:", err);
+            throw err;
+        }
         return newCategory;
     }
 

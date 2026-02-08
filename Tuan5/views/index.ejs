@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NodeJS CRUD DynamoDB</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        form { margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; width: 300px; }
+        input { display: block; margin-bottom: 10px; width: 90%; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        img { width: 60px; height: auto; border-radius: 4px; }
+        .btn-del { color: red; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+<h1>Quản lý Sản Phẩm (DynamoDB)</h1>
+
+<form action="/add" method="POST">
+    <h3>Thêm sản phẩm mới</h3>
+    <input type="text" name="name" placeholder="Tên sản phẩm" required>
+    <input type="number" name="price" placeholder="Giá tiền" required>
+    <input type="text" name="url_image" placeholder="Link ảnh (URL)" required>
+    <button type="submit">Lưu sản phẩm</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Hình ảnh</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá (VNĐ)</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% products.forEach(p => { %>
+        <tr>
+            <td><%= p.id.substring(0,8) %>...</td>
+            <td><img src="<%= p.url_image %>" alt="Product Image"></td>
+            <td><%= p.name %></td>
+            <td><%= p.price %></td>
+            <td><a href="/delete/<%= p.id %>" class="btn-del" onclick="return confirm('Xóa nhé?')">Xóa</a></td>
+        </tr>
+    <% }) %>
+    </tbody>
+</table>
+</body>
+</html>
