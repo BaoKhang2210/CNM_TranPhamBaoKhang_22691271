@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danh sách người dùng MVC</title>
+</head>
+<body>
+    <h1>Danh sách người dùng</h1>
+    <ul>
+        <% users.forEach(function(user) { %>
+            <li><%= user.name %> (Mã ID: <%= user.id %>)</li>
+        <% }); %>
+    </ul>
+</body>
+</html>
