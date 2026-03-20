@@ -1,0 +1,32 @@
+<h2>Danh sách sản phẩm</h2>
+
+<form method="GET">
+    <input name="keyword" placeholder="Tìm kiếm..." value="<%= keyword %>">
+    <button>Tìm</button>
+</form>
+
+<a href="/create">Thêm</a>
+
+<table border="1">
+<tr>
+    <th>Ảnh</th>
+    <th>Tên</th>
+    <th>Giá</th>
+    <th>Kho</th>
+    <th>Action</th>
+</tr>
+
+<% products.forEach(p => { %>
+<tr>
+    <td><img src="<%= p.url_image %>" width="80"/></td>
+    <td><%= p.name %></td>
+    <td><%= p.price %></td>
+    <td><%= p.unit_in_stock %></td>
+    <td>
+        <a href="/detail/<%= p.id %>">Xem</a>
+        <a href="/edit/<%= p.id %>">Sửa</a>
+        <a href="/delete/<%= p.id %>">Xóa</a>
+    </td>
+</tr>
+<% }) %>
+</table>
